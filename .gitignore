@@ -1,0 +1,15 @@
+.env
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.venv/
+venv/
+build/
+dist/
+*.egg-info/
+.vscode/
+Extra/
+t5-small-1070-colab/
+t5_weights_1.pt

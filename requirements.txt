@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+nltk
+numpy
+scikit-learn
+transformers
+datasets
+torch
+rouge-score
+sentencepiece
+streamlit
+requests
