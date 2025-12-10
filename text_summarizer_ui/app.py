@@ -42,6 +42,12 @@ if st.button("Compare Models"):
 
         st.write("### Abstractive Summary")
         st.write(results["abstractive_summary"])
-
-        st.write("### ROUGE Scores")
-        st.json(results["rouge_scores"])
+        
+        st.write("### GPT Summary")
+        st.write(results["gpt_summary"])
+        
+        st.write("### Extractive ROUGE Scores")
+        st.json(results["extractive_rouge_scores"])
+        
+        st.write("### Abstractive ROUGE Scores")
+        st.json(results["abstractive_rouge_scores"])
