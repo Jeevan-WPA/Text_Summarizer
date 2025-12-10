@@ -46,19 +46,30 @@ def compare(req: ComparisonRequest):
     # Generate both summaries
     extractive_sum = extractive_model.summarize(req.text)
     abstractive_sum = abstractive_model.summarize(req.text)
+    
+    gpt_sum = gpt_model.summarize(req.text)
 
-    # Compute ROUGE scores (extractive vs abstractive)
-    scores = scorer.score(target=abstractive_sum, prediction=extractive_sum)
-
+    # Compute ROUGE scores (extractive vs GPT and abstractive vs GPT)
+    extractive_score = scorer.score(target=gpt_sum, prediction=extractive_sum)
+    abstractive_score = scorer.score(target=gpt_sum, prediction=abstractive_sum)
+    
     # Format output
-    rouge_output = {
-        "rouge1": round(scores["rouge1"].fmeasure, 4),
-        "rouge2": round(scores["rouge2"].fmeasure, 4),
-        "rougeL": round(scores["rougeL"].fmeasure, 4)
+    e_rouge_output = {
+        "rouge1": round(extractive_score["rouge1"].fmeasure, 4),
+        "rouge2": round(extractive_score["rouge2"].fmeasure, 4),
+        "rougeL": round(extractive_score["rougeL"].fmeasure, 4)
     }
 
+    a_rouge_output = {
+        "rouge1": round(abstractive_score["rouge1"].fmeasure, 4),
+        "rouge2": round(abstractive_score["rouge2"].fmeasure, 4),
+        "rougeL": round(abstractive_score["rougeL"].fmeasure, 4)
+    }
+    
     return {
         "extractive_summary": extractive_sum,
         "abstractive_summary": abstractive_sum,
-        "rouge_scores": rouge_output
+        "gpt_summary": gpt_sum,
+        "extractive_rouge_scores": e_rouge_output,
+        "abstractive_rouge_scores": a_rouge_output
     }
