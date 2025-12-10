@@ -89,7 +89,7 @@ pip install -r requirements.txt
 ### 4️⃣ Create a .env file and add your API key
 
 ```bash
-API_KEY=your_api_key_here
+OPENAI_API_KEY=your_api_key_here
 ```
 
 
