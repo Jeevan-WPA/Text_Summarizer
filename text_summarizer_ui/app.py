@@ -4,7 +4,7 @@ from api_client import summarize, compare
 st.set_page_config(page_title="AI Summarizer", layout="wide")
 
 st.title("📝 AI Summarization Engine")
-st.write("Extractive + Abstractive Summary Generator (FastAPI + Streamlit)")
+st.write("Extractive,Abstractive and LLM Based Summary Generator (FastAPI + Streamlit)")
 
 # Text input
 text = st.text_area("Enter your text:", height=250)
@@ -12,7 +12,7 @@ text = st.text_area("Enter your text:", height=250)
 # Mode selection
 mode = st.selectbox(
     "Choose summarization mode:",
-    ["extractive", "abstractive"]
+    ["extractive", "abstractive","llm"]
 )
 
 # Generate summary

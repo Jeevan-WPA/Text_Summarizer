@@ -10,3 +10,5 @@ rouge-score
 sentencepiece
 streamlit
 requests
+openai
+python-dotenv

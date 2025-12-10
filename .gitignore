@@ -13,3 +13,4 @@ dist/
 Extra/
 t5-small-1070-colab/
 t5_weights_1.pt
+test.py

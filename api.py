@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from extractive import TextRankSummarizer
 from abstractive import AbstractiveSummarizer
+from gpt_summarizer import GptSummarizer
 from rouge_score import rouge_scorer
 
 app = FastAPI()
@@ -9,6 +10,7 @@ app = FastAPI()
 # Load both models ONCE when the server starts
 extractive_model = TextRankSummarizer()
 abstractive_model = AbstractiveSummarizer()
+gpt_model = GptSummarizer()
 
 class SummaryRequest(BaseModel):
     text: str
@@ -25,6 +27,9 @@ def summarize(req: SummaryRequest):
     elif req.mode == "abstractive":
         result = abstractive_model.summarize(req.text)
 
+    elif req.mode == "llm":
+        result = gpt_model.summarize(req.text)
+    
     else:
         return {"error": "Invalid mode. Use 'extractive' or 'abstractive'."}
 
