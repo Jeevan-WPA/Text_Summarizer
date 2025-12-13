@@ -7,7 +7,7 @@ from rouge_score import rouge_scorer
 
 app = FastAPI()
 
-# Load both models ONCE when the server starts
+# Load the  models ONCE when the server starts
 extractive_model = TextRankSummarizer()
 abstractive_model = AbstractiveSummarizer()
 gpt_model = GptSummarizer()
@@ -31,7 +31,7 @@ def summarize(req: SummaryRequest):
         result = gpt_model.summarize(req.text)
     
     else:
-        return {"error": "Invalid mode. Use 'extractive' or 'abstractive'."}
+        return {"error": "Invalid mode. Use 'extractive','abstractive' or 'llm'."}
 
     return {"summary": result}
 
